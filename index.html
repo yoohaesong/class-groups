@@ -79,6 +79,14 @@
       letter-spacing: -0.5px;
     }
 
+    .logo-date {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-top: 1px;
+      margin-bottom: 2px;
+    }
+
     .logo-sub {
       font-size: 13px;
       color: var(--text-muted);
@@ -706,6 +714,7 @@
       <div class="logo-icon">🎲</div>
       <div>
         <h1 class="logo-title">우리 반 모둠 나누기</h1>
+        <div class="logo-date" id="todayDate"></div>
         <div class="logo-sub">출석번호 기반 스마트 무작위 배정기</div>
       </div>
     </div>
@@ -1650,8 +1659,18 @@
       });
     }
 
+    // 오늘 날짜 표시 함수
+    function displayCurrentDate() {
+      const dateEl = document.getElementById('todayDate');
+      if (!dateEl) return;
+      const now = new Date();
+      const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'short' };
+      dateEl.textContent = `📅 ${now.toLocaleDateString('ko-KR', options)}`;
+    }
+
     // 초기 실행
     window.addEventListener('DOMContentLoaded', () => {
+      displayCurrentDate();
       Confetti.init();
       loadSettings();
       updateSoundUI();
